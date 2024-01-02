@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.18)
-project(AdventOfCode2021)
+project(LeetCode)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++23 -static-libstdc++")
 
