@@ -21,6 +21,11 @@ namespace leet_code {
     }
 
     template<fixed_string Name>
+    void prepare_test_cases() {
+        std::cout << "No prepare test cases are defined for this exercise\n";
+    }
+
+    template<fixed_string Name>
     double test_cases() {
         std::cout << "No test cases are defined for this exercise\n";
         return 100;
@@ -28,8 +33,9 @@ namespace leet_code {
 
     template<fixed_string Name>
     void run_test_cases() {
+        prepare_test_cases<Name>();
         auto start_time = std::chrono::high_resolution_clock::now();
-        auto res = test_cases<Name>();
+        double res = test_cases<Name>();
         auto stop_time = std::chrono::high_resolution_clock::now();
         std::cout << "Success percentages: " << res * 100 << "%\n";
         std::cout << "Computation time: ";
@@ -48,8 +54,8 @@ namespace leet_code {
         std::cout << std::endl;
     }
 
-    template<typename InputParamT, typename ResT>
-    bool check_if_same(InputParamT param, ResT actual, ResT expected) {
+    template<typename ResT>
+    bool check_if_same(auto param, ResT actual, ResT expected) {
         if (actual == expected) return true;
         std::cout << "Param: " << param << " Actual: " << actual << " Expected: " << expected << "\n";
         return false;

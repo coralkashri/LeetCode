@@ -4,8 +4,10 @@ namespace leet_code {
 
     /* Question source: https://leetcode.com/problems/strong-password-checker */
 
+    constexpr char exercise_name[] = "strong_password_checker";
+
     template<>
-    size_t exercise<"strong_password_checker">(std::string_view password) {
+    size_t exercise<exercise_name>(std::string_view password) {
         size_t required_length_add = password.size() < 6 ? 6 - password.size() : 0;
         int64_t required_length_remove = password.size() > 20 ? password.size() - 20 : 0;
 
@@ -69,57 +71,29 @@ namespace leet_code {
         }());
     }
 
+    std::vector<std::pair<std::string_view, size_t>> actual_test_cases;
+
     template<>
-    double test_cases<"strong_password_checker">() {
-        double test_cases_count = 0;
+    void prepare_test_cases<exercise_name>() {
+        actual_test_cases.emplace_back("a", 5ul);
+        actual_test_cases.emplace_back("aA1", 3ul);
+        actual_test_cases.emplace_back("1337C0d3", 0ul);
+        actual_test_cases.emplace_back("aaa123", 1ul);
+        actual_test_cases.emplace_back("aaa1B", 1ul);
+        actual_test_cases.emplace_back("aaa111", 2ul);
+        actual_test_cases.emplace_back("1111111111", 3ul);
+        actual_test_cases.emplace_back("bbaaaaaaaaaaaaaaacccccc", 8ul);
+        actual_test_cases.emplace_back("aaaaAAAAAA000000123456", 5ul);
+    }
+
+    template<>
+    double test_cases<exercise_name>() {
         double success = 0;
-        size_t res;
 
-        std::string_view current_input = "a";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 5ul);
+        for (auto [password, expected_result] : actual_test_cases) {
+            success += check_if_same(password, exercise<exercise_name, size_t>(password), expected_result);
+        }
 
-        current_input = "aA1";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 3ul);
-
-        current_input = "1337C0d3";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 0ul);
-
-        current_input = "aaa123";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 1ul);
-
-        current_input = "aaa1B";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 1ul);
-
-        current_input = "aaa111";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 2ul);
-
-        current_input = "1111111111";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 3ul);
-
-        current_input = "bbaaaaaaaaaaaaaaacccccc";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 8ul);
-
-        current_input = "aaaaAAAAAA000000123456";
-        res = exercise<"strong_password_checker", size_t>(current_input);
-        ++test_cases_count;
-        success += check_if_same(current_input, res, 5ul);
-
-        return success / test_cases_count;
+        return success / (double)actual_test_cases.size();
     }
 }
