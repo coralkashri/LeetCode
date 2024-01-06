@@ -28,7 +28,7 @@ namespace leet_code {
     template<fixed_string Name>
     double test_cases() {
         std::cout << "No test cases are defined for this exercise\n";
-        return 100;
+        return 1;
     }
 
     template<fixed_string Name>
