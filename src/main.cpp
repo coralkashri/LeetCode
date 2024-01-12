@@ -1,8 +1,9 @@
 #include <iostream>
 #include "exercise.hpp"
+#include "exercises/all.hpp"
 
 int main() {
-    leet_code::run_test_cases<"palindrome_partitioning_2">();
+    leet_code::exercise_impl<"strong_password_checker">().run_test_cases();
 
     return EXIT_SUCCESS;
 }
