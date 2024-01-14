@@ -8,8 +8,6 @@ if (${CMAKE_BUILD_TYPE} STREQUAL "Release")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 endif()
 
-#generate_all_exercises_includes_file()
-
 SET(EXERCISES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/exercises)
 set(ALL_EXERCISES_FILE ${EXERCISES_DIR}/all.hpp)
 
@@ -33,6 +31,6 @@ add_custom_target(
 
 file(GLOB_RECURSE SOURCE_FILES src/*)
 
-add_executable(AdventOfCode2021 ${SOURCE_FILES} ${ALL_EXERCISES_FILE})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ALL_EXERCISES_FILE})
 
-add_dependencies(AdventOfCode2021 create_file_target)
+add_dependencies(${PROJECT_NAME} create_file_target)
