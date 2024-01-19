@@ -11,6 +11,7 @@
 #include <span>
 #include <unordered_map>
 #include <unordered_set>
+#include <cmath>
 #include <vector>
 #include "fixed_string.hpp"
 #include "time.hpp"
